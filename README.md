@@ -2,7 +2,7 @@
 
 It is a Ruby wrapper for the Crowdskout API.
 
-[![Build Status](https://travis-ci.org/revvco/crowdskout.png?branch=master)](https://travis-ci.org/revvco/crowdskout.png?branch=master)
+[![Build Status](https://travis-ci.org/revvco/crowdskout.png?branch=master)](https://travis-ci.org/revvco/crowdskout.png?branch=master) [![Gem Version](https://badge.fury.io/rb/crowdskout.svg)](https://badge.fury.io/rb/crowdskout)
 
 Visit also a Crowdskout API documentation: [here](http://docs.crowdskout.com/api/#get-the-options-for-a-field)
 
