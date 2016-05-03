@@ -5,10 +5,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "crowdskout"
-  s.version = '0.0.1'
+  s.version = '0.0.3'
   s.platform = Gem::Platform::RUBY
-  s.authors = ["Kyle Schutt"]
-  s.homepage = "https://github.com/kschutt/crowdskout"
+  s.authors = ["Crowdskout", "Revv","Kyle Schutt"]
+  s.homepage = "https://github.com/revvco/crowdskout"
   s.summary = %q{Crowdskout SDK for Ruby}
   s.email = "kyle@revv.co"
   s.description = "Ruby library for interactions with Crowdskout v1 API"
