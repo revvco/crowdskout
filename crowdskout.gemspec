@@ -7,10 +7,10 @@ Gem::Specification.new do |s|
   s.name = "crowdskout"
   s.version = '0.0.1'
   s.platform = Gem::Platform::RUBY
-  s.authors = ["Crowdskout", "Kyle Schutt"]
-  s.homepage = "http://www.crowdskout.com"
+  s.authors = ["Kyle Schutt"]
+  s.homepage = "https://github.com/kschutt/crowdskout"
   s.summary = %q{Crowdskout SDK for Ruby}
-  s.email = "info@crowdskout.com"
+  s.email = "kyle@revv.co"
   s.description = "Ruby library for interactions with Crowdskout v1 API"
   s.license = "MIT"
 
