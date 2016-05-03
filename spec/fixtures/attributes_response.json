@@ -1,0 +1,71 @@
+{
+  "success" : true,
+  "messages" : [],
+  "data" : {
+    "total": 7,
+    "list": [
+      {
+        "id": 1,
+        "type": "Radio",
+        "locked": false,
+        "name": "Ready to set sail",
+        "options": [
+          {
+            "id": 1,
+            "value": "Yes"
+          },
+          {
+            "id" : 2,
+            "value" : "No"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "type": "Checkbox",
+        "locked": false,
+        "name": "Types of Livestock Owned",
+        "options": [
+          {
+            "id" : 1,
+            "value" : "Sheep"
+          },
+          {
+            "id" : 2,
+            "value" : "Cow"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "type": "Text",
+        "locked": false,
+        "name": "Favorite Island Discovered"
+      },
+      {
+        "id": 4,
+        "type": "Number",
+        "locked": false,
+        "name": "Number of Parakeets Owned"
+      },
+      {
+        "id": 5,
+        "type": "Tag",
+        "locked": true,
+        "name": "Circumnavigated the Globe"
+      },
+      {
+        "id": 6,
+        "type": "Date",
+        "locked": false,
+        "name": "Date Arrived at the Spice Islands"
+      },
+      {
+        "id": 7,
+        "type": "Datetime",
+        "locked": false,
+        "name": "Date and Time Circumnavigated the Globe"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "success" : true,
+  "messages" : [],
+  "data" : {
+    "collection" : "PhysicalAddresses",
+    "options" : [
+      {
+        "id" : 1,
+        "value" : "Lisbon"
+      }
+    ]
+  }
+}

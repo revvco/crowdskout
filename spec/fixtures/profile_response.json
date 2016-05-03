@@ -1,0 +1,27 @@
+{
+  "success" : true,
+  "messages" : [],
+  "data" : {
+    "id" : 1,
+    "Names" : [
+      {
+        "id" : 1,
+        "FullName" : "Mr. Ferdinand Magellan",
+        "NameTitle" : "Mr.",
+        "FirstName" : "Ferdinand",
+        "MiddleName" : null,
+        "LastName" : "Magellan",
+        "NameSuffix" : null
+      }
+    ],
+    "Genders" : [
+      {
+        "id" : 1,
+        "Gender" : {
+          "id" : 1,
+          "value" : "Male"
+        }
+      }
+    ]
+  }
+}

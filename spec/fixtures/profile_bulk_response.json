@@ -1,0 +1,30 @@
+{
+  "success" : true,
+  "messages" : [],
+  "data" : [
+    {
+      "id" : 1,
+      "Genders" : [
+        {
+          "id" : 1,
+          "Gender" : {
+            "id" : 1,
+            "value" : "Male"
+          }
+        }
+      ]
+    },
+    {
+      "id" : 2,
+      "Genders" : [
+        {
+          "id" : 2,
+          "Gender" : {
+            "id" : 2,
+            "value" : "Female"
+          }
+        }
+      ]
+    }  
+  ]
+}
