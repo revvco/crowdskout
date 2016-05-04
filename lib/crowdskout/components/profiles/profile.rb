@@ -7,31 +7,22 @@
 module Crowdskout
   module Components
     class Profile < Component
-      attr_accessor :id, :names, :genders
+      attr_accessor :id, :collections
 
       # Factory method to create an Profile object from a json string
       # @param [Hash] props - properties to create object from
       # @return [Profile]
       def self.create(props)
         obj = Profile.new
+        obj.collections = []
         if props
           props.each do |key, value|
-            if key.downcase == 'names'
-              if value
-                obj.names = []
-                value.each do |name|
-                  obj.names << Components::Name.create(name)
-                end
-              end
-            elsif key.downcase == 'genders'
-              if value
-                obj.genders = []
-                value.each do |gender|
-                  obj.genders << Components::Gender.create(gender)
-                end
-              end
-            else
+            if ['id'].include? key.downcase
               obj.send("#{key}=", value) if obj.respond_to? key
+            else
+              # the key is the name of the collection
+              # the value is an array of items
+              obj.collections << Components::Collection.create(key, value)
             end
           end
         end

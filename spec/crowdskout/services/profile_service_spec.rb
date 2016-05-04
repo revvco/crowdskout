@@ -21,11 +21,17 @@ describe Crowdskout::Services::ProfileService do
       profile = Crowdskout::Services::ProfileService.get_profile(1, "Names,Genders")
 
       profile.should be_kind_of(Crowdskout::Components::Profile)
-      profile.names[0].should be_kind_of(Crowdskout::Components::Name)
-      profile.names[0].FullName.should eq 'Mr. Ferdinand Magellan'
-      profile.genders[0].should be_kind_of(Crowdskout::Components::Gender)
-      profile.genders[0].gender.should be_kind_of(Crowdskout::Components::GenderInfo)
-      profile.genders[0].gender.value.should eq 'Male'
+      profile.collections[1].should be_kind_of(Crowdskout::Components::Collection)
+      profile.collections[1].key_name.should eq 'Genders'
+      profile.collections[1].items[0].should be_kind_of(Crowdskout::Components::Item)
+      profile.collections[1].items[0].id.should eq 1
+      profile.collections[1].items[0].fields[0].should be_kind_of(Crowdskout::Components::Field)
+      profile.collections[1].items[0].fields[0].key_name.should eq "Gender"
+      profile.collections[1].items[0].fields[0].value.should be_kind_of(Crowdskout::Components::Value)
+      profile.collections[1].items[0].fields[0].value.id.should eq 1
+      profile.collections[1].items[0].fields[0].value.value.should eq "Male"
+      profile.collections[1].items[0].fields[1].key_name.should eq "TestValue"
+      profile.collections[1].items[0].fields[1].value.should eq "value"
     end
   end
 
@@ -36,15 +42,21 @@ describe Crowdskout::Services::ProfileService do
 
       response = RestClient::Response.create(json, net_http_resp, {}, @request)
       RestClient.stub(:post).and_return(response)
-      new_profile = Crowdskout::Components::Profile.create(JSON.parse(json))
+      new_profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
       profile = Crowdskout::Services::ProfileService.create_profile(new_profile)
 
       profile.should be_kind_of(Crowdskout::Components::Profile)
-      profile.names[0].should be_kind_of(Crowdskout::Components::Name)
-      profile.names[0].FullName.should eq 'Mr. Ferdinand Magellan'
-      profile.genders[0].should be_kind_of(Crowdskout::Components::Gender)
-      profile.genders[0].gender.should be_kind_of(Crowdskout::Components::GenderInfo)
-      profile.genders[0].gender.value.should eq 'Male'
+      profile.collections[1].should be_kind_of(Crowdskout::Components::Collection)
+      profile.collections[1].key_name.should eq 'Genders'
+      profile.collections[1].items[0].should be_kind_of(Crowdskout::Components::Item)
+      profile.collections[1].items[0].id.should eq 1
+      profile.collections[1].items[0].fields[0].should be_kind_of(Crowdskout::Components::Field)
+      profile.collections[1].items[0].fields[0].key_name.should eq "Gender"
+      profile.collections[1].items[0].fields[0].value.should be_kind_of(Crowdskout::Components::Value)
+      profile.collections[1].items[0].fields[0].value.id.should eq 1
+      profile.collections[1].items[0].fields[0].value.value.should eq "Male"
+      profile.collections[1].items[0].fields[1].key_name.should eq "TestValue"
+      profile.collections[1].items[0].fields[1].value.should eq "value"
     end
   end
 
@@ -55,7 +67,6 @@ describe Crowdskout::Services::ProfileService do
 
       response = RestClient::Response.create(json, net_http_resp, {}, @request)
       RestClient.stub(:post).and_return(response)
-      new_profile = Crowdskout::Components::Profile.create(JSON.parse(json))
       profiles = []
       body = JSON.parse(json)
       body['data'].each do |profile|
@@ -66,9 +77,15 @@ describe Crowdskout::Services::ProfileService do
 
       profiles.should be_kind_of(Crowdskout::Components::ResultSet)
       profile.should be_kind_of(Crowdskout::Components::Profile)
-      profile.genders[0].should be_kind_of(Crowdskout::Components::Gender)
-      profile.genders[0].gender.should be_kind_of(Crowdskout::Components::GenderInfo)
-      profile.genders[0].gender.value.should eq 'Male'
+      profile.collections[0].should be_kind_of(Crowdskout::Components::Collection)
+      profile.collections[0].key_name.should eq 'Genders'
+      profile.collections[0].items[0].should be_kind_of(Crowdskout::Components::Item)
+      profile.collections[0].items[0].id.should eq 1
+      profile.collections[0].items[0].fields[0].should be_kind_of(Crowdskout::Components::Field)
+      profile.collections[0].items[0].fields[0].key_name.should eq "Gender"
+      profile.collections[0].items[0].fields[0].value.should be_kind_of(Crowdskout::Components::Value)
+      profile.collections[0].items[0].fields[0].value.id.should eq 1
+      profile.collections[0].items[0].fields[0].value.value.should eq "Male"
     end
   end
 
@@ -79,15 +96,21 @@ describe Crowdskout::Services::ProfileService do
 
       response = RestClient::Response.create(json, net_http_resp, {}, @request)
       RestClient.stub(:put).and_return(response)
-      profile = Crowdskout::Components::Profile.create(JSON.parse(json))
+      profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
       result = Crowdskout::Services::ProfileService.update_profile(profile)
 
       result.should be_kind_of(Crowdskout::Components::Profile)
-      result.names[0].should be_kind_of(Crowdskout::Components::Name)
-      result.names[0].FullName.should eq 'Mr. Ferdinand Magellan'
-      result.genders[0].should be_kind_of(Crowdskout::Components::Gender)
-      result.genders[0].gender.should be_kind_of(Crowdskout::Components::GenderInfo)
-      result.genders[0].gender.value.should eq 'Male'
+      result.collections[1].should be_kind_of(Crowdskout::Components::Collection)
+      result.collections[1].key_name.should eq 'Genders'
+      result.collections[1].items[0].should be_kind_of(Crowdskout::Components::Item)
+      result.collections[1].items[0].id.should eq 1
+      result.collections[1].items[0].fields[0].should be_kind_of(Crowdskout::Components::Field)
+      result.collections[1].items[0].fields[0].key_name.should eq "Gender"
+      result.collections[1].items[0].fields[0].value.should be_kind_of(Crowdskout::Components::Value)
+      result.collections[1].items[0].fields[0].value.id.should eq 1
+      result.collections[1].items[0].fields[0].value.value.should eq "Male"
+      result.collections[1].items[0].fields[1].key_name.should eq "TestValue"
+      result.collections[1].items[0].fields[1].value.should eq "value"
     end
   end
 
@@ -98,7 +121,6 @@ describe Crowdskout::Services::ProfileService do
 
       response = RestClient::Response.create(json, net_http_resp, {}, @request)
       RestClient.stub(:put).and_return(response)
-      new_profile = Crowdskout::Components::Profile.create(JSON.parse(json))
       profiles = []
       body = JSON.parse(json)
       body['data'].each do |profile|
@@ -108,10 +130,15 @@ describe Crowdskout::Services::ProfileService do
       profile = profiles.results[0]
 
       profiles.should be_kind_of(Crowdskout::Components::ResultSet)
-      profile.should be_kind_of(Crowdskout::Components::Profile)
-      profile.genders[0].should be_kind_of(Crowdskout::Components::Gender)
-      profile.genders[0].gender.should be_kind_of(Crowdskout::Components::GenderInfo)
-      profile.genders[0].gender.value.should eq 'Male'
+      profile.collections[0].should be_kind_of(Crowdskout::Components::Collection)
+      profile.collections[0].key_name.should eq 'Genders'
+      profile.collections[0].items[0].should be_kind_of(Crowdskout::Components::Item)
+      profile.collections[0].items[0].id.should eq 1
+      profile.collections[0].items[0].fields[0].should be_kind_of(Crowdskout::Components::Field)
+      profile.collections[0].items[0].fields[0].key_name.should eq "Gender"
+      profile.collections[0].items[0].fields[0].value.should be_kind_of(Crowdskout::Components::Value)
+      profile.collections[0].items[0].fields[0].value.id.should eq 1
+      profile.collections[0].items[0].fields[0].value.value.should eq "Male"
     end
   end
 end

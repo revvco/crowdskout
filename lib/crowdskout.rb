@@ -48,8 +48,10 @@ module Crowdskout
     autoload :Attribute, 'crowdskout/components/attributes/attribute'
     autoload :Option, 'crowdskout/components/attributes/option'
     autoload :Profile, 'crowdskout/components/profiles/profile'
-    autoload :Name, 'crowdskout/components/profiles/name'
-    autoload :Gender, 'crowdskout/components/profiles/gender'
+    autoload :Collection, 'crowdskout/components/profiles/collection'
+    autoload :Item, 'crowdskout/components/profiles/item'
+    autoload :Field, 'crowdskout/components/profiles/field'
+    autoload :Value, 'crowdskout/components/profiles/value'
     autoload :FieldOptions, 'crowdskout/components/fields/field_options'
   end
 
