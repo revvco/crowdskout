@@ -1,13 +1,17 @@
-# Copyright (c) 2016 Kyle Schutt. All rights reserved.require 
+#
+# name.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
 
 module Crowdskout
   module Components
     class Name < Component
       attr_accessor :id, :FullName, :NameTitle, :FirstName, :MiddleName, :LastName, :NameSuffix
 
-      # Factory method to create an Address object from a json string
+      # Factory method to create an Name object from a json string
       # @param [Hash] props - properties to create object from
-      # @return [Address]
+      # @return [Name]
       def self.create(props)
         obj = Name.new
         if props

@@ -1,8 +1,17 @@
+#
+# profile.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   module Components
     class Profile < Component
       attr_accessor :id, :names, :genders
 
+      # Factory method to create an Profile object from a json string
+      # @param [Hash] props - properties to create object from
+      # @return [Profile]
       def self.create(props)
         obj = Profile.new
         if props
@@ -29,11 +38,17 @@ module Crowdskout
         obj
       end
 
+      # Add a Name
+      # @param [Name] name
+      # @return [Array] the names array
       def add_names(name)
         @names = [] if @names.nil?
         @names << name
       end
 
+      # Add a Gender
+      # @param [Gebder] gender
+      # @return [Array] the genders array
       def add_genders(gender)
         @genders = [] if @genders.nil?
         @genders << gender

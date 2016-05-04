@@ -1,8 +1,17 @@
+#
+# attribute.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   module Components
     class Attribute < Component
       attr_accessor :id, :type, :locked, :name, :options
 
+      # Factory method to create an Attribute object from a json string
+      # @param [Hash] props - properties to create object from
+      # @return [Attribute]
       def self.create(props)
         obj = Attribute.new
         if props
@@ -22,6 +31,9 @@ module Crowdskout
         obj
       end
 
+      # Add an Option
+      # @param [Option] option
+      # @return [Array] the options array
       def add_options(option)
         @options = [] if @options.nil?
         @options << option

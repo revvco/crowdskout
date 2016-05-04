@@ -1,12 +1,17 @@
+#
+# attribute_service.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   module Services
     class AttributeService < BaseService
       class << self
 
         # More info - http://docs.crowdskout.com/api/#get-all-attributes
-        # @param params - query parameters
-        #         - limit - the number of attributes to limit
-        #         - offset - the number of attributes to skip        
+        # @param [Hash] params - query parameters
+        # @return [ResultSet] set of Components::Attributes       
         def get_attributes(params = {})
           url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.attributes')
           url = build_url(url, params)
@@ -23,17 +28,21 @@ module Crowdskout
         end
 
         # more info - http://docs.crowdskout.com/api/#get-an-attribute-by-id
-        # @param [Integration] attribute_id - the id of the attribute to fetch
-        def get_attribute(attribute_id)
+        # @param [Integer] attribute_id - the id of the attribute to fetch
+        # @param [Hash] params - query parameters
+        # @return [Attribute]
+        def get_attribute(attribute_id, params = {})
           raise Exceptions::ServiceException, "Attribute ID is required." if attribute_id.nil?
           url = Util::Config.get('endpoints.base_url') +
                 sprintf(Util::Config.get('endpoints.crud_attribute'), attribute_id)
-          url = build_url(url)
+          url = build_url(url, params)
           response = RestClient.get(url, get_headers())
           Components::Attribute.create(JSON.parse(response.body)["data"])
         end
 
         # more info - http://docs.crowdskout.com/api/#create-an-attribute
+        # @param [Attribute] attribute - attribute object to add to Crowdskout
+        # @return [Attribute]
         def create_attribute(new_attribute)
           raise Exceptions::ServiceException, "Attribute must not be nil" if new_attribute.nil?
           url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.attribute')
@@ -44,6 +53,9 @@ module Crowdskout
         end
 
         # more info - http://docs.crowdskout.com/api/#update-an-attribute
+        # @param [Integer] attribute_id - the id of the attribute to update
+        # @param [Hash] params - query parameters
+        # @return [Attribute]
         def update_attribute(attribute_id, params = {})
           raise Exceptions::ServiceException, "Attribute ID is required." if attribute_id.nil?
           url = Util::Config.get('endpoints.base_url') + sprintf(Util::Config.get('endpoints.crud_attribute'), attribute_id)
@@ -53,6 +65,8 @@ module Crowdskout
         end
 
         # more info - http://docs.crowdskout.com/api/#delete-an-attribute
+        # @param [Integer] attribute_id - the id of the attribute to update
+        # @return [boolean]
         def delete_attribute(attribute_id)
           raise Exceptions::ServiceException, "Attribute ID is required." if attribute_id.nil?
           url = Util::Config.get('endpoints.base_url') + sprintf(Util::Config.get('endpoints.crud_attribute'), attribute_id)

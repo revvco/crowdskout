@@ -1,3 +1,9 @@
+#
+# api.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   class Api
     # Class constructor
@@ -19,7 +25,7 @@ module Crowdskout
     def get_profile(profile_id, collections)
       Services::ProfileService.get_profile(profile_id, collections)
     end
-    def create_profile(profile, params = {})
+    def create_profile(profile)
       Services::ProfileService.create_profile(profile, params)
     end
     def create_profiles_bulk(profiles)
@@ -41,7 +47,7 @@ module Crowdskout
     def get_attributes(params = {})
       Services::AttributeService.get_attributes(params)
     end
-    def get_attribute(attribute_id)
+    def get_attribute(attribute_id, params = {})
       Services::AttributeService.get_attribute(attribute_id)
     end
     def create_attribute(name, type, options = nil)

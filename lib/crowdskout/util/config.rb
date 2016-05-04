@@ -1,3 +1,9 @@
+#
+# config.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   module Util
     class Config

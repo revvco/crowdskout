@@ -1,3 +1,9 @@
+#
+# oauth2.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
+
 module Crowdskout
   module Auth
     class OAuth2

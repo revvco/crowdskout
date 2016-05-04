@@ -1,13 +1,17 @@
-# Copyright (c) 2016 Kyle Schutt. All rights reserved.require 
+#
+# option.rb
+# Crowdskout
+#
+# Copyright (c) 2016 Kyle Schutt. All rights reserved.
 
 module Crowdskout
   module Components
     class Option < Component
       attr_accessor :id, :value
 
-      # Factory method to create an Address object from a json string
+      # Factory method to create an Option object from a json string
       # @param [Hash] props - properties to create object from
-      # @return [Address]
+      # @return [Option]
       def self.create(props)
         obj = Option.new
         if props
