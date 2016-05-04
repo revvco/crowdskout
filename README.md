@@ -4,7 +4,7 @@
 
 A Ruby wrapper for the Crowdskout API.
 
-Visit also a Crowdskout API documentation: [here](http://docs.crowdskout.com/api/#get-the-options-for-a-field)
+Crowdskout API documentation can be found [here](http://docs.crowdskout.com/api/#get-the-options-for-a-field)
 
 ## Installation
 
