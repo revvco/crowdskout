@@ -1,6 +1,6 @@
 # Crowdskout
 
-[![Build Status](https://travis-ci.org/revvco/crowdskout.png?branch=master)](https://travis-ci.org/revvco/crowdskout.png?branch=master) [![Gem Version](https://badge.fury.io/rb/crowdskout.svg)](https://badge.fury.io/rb/crowdskout) [![Code Climate](https://codeclimate.com/github/revvco/crowdskout/badges/gpa.svg)](https://codeclimate.com/github/revvco/crowdskout)
+[![Build Status](https://travis-ci.org/revvco/crowdskout.png?branch=master)](https://travis-ci.org/revvco/crowdskout) [![Gem Version](https://badge.fury.io/rb/crowdskout.svg)](https://badge.fury.io/rb/crowdskout) [![Code Climate](https://codeclimate.com/github/revvco/crowdskout/badges/gpa.svg)](https://codeclimate.com/github/revvco/crowdskout)
 
 A Ruby wrapper for the Crowdskout API.
 
