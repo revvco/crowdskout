@@ -7,13 +7,14 @@
 module Crowdskout
   module Components
     class Item < Component
-      attr_accessor :id, :fields
+      attr_accessor :id, :fields, :delete
 
       # Factory method to create an Item object from a json string
       # @param [Hash] props - properties to create object from
       # @return [Item]
       def self.create(props)
         obj = Item.new
+        obj.id = 0
         obj.fields = []
         if props
           props.each do |key, value|
