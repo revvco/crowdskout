@@ -21,7 +21,7 @@ module Crowdskout
           if value.is_a?(Hash)
             obj.value = Value.create(value)
           else
-            obj.value = value.to_s
+            obj.value = value
           end
         end
         obj
@@ -30,7 +30,7 @@ module Crowdskout
       # Hash override to generate the correct hash
       def to_hash
         {
-          key_name => (value.is_a?(String) ? value : value.to_hash)
+          key_name => (value.is_a?(Hash) ? value.to_hash : value)
         }
       end
     end
