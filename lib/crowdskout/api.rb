@@ -26,7 +26,7 @@ module Crowdskout
       Services::ProfileService.get_profile(profile_id, collections)
     end
     def create_profile(profile)
-      Services::ProfileService.create_profile(profile, params)
+      Services::ProfileService.create_profile(profile)
     end
     def create_profiles_bulk(profiles)
       Services::ProfileService.create_profiles_bulk(profiles)

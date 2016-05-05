@@ -22,7 +22,7 @@ module Crowdskout
             else
               # the key is the name of the collection
               # the value is an array of items
-              obj.collections << Components::Collection.create(key, value)
+              obj.collections << Components::Collection.create({key => value})
             end
           end
         end
@@ -43,6 +43,15 @@ module Crowdskout
       def add_genders(gender)
         @genders = [] if @genders.nil?
         @genders << gender
+      end
+
+      # Hash override to generate the correct hash
+      def to_hash
+        ret_val = { id: id }
+        collections.each do |collection|
+          ret_val.merge! collection.to_hash
+        end
+        ret_val
       end
 
     end

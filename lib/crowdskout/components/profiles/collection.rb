@@ -13,17 +13,23 @@ module Crowdskout
       # @param [String] key_name - name of the collection
       # @param [Array] items - properties to create object from
       # @return [Collection]
-      def self.create(key_name, items)
+      def self.create(props)
         obj = Collection.new
-        obj.key_name = key_name
         obj.items = []
-        if items
-          items.each do |item|
-            # item is a hash of fields
-            obj.items << Components::Item.create(item)
+        props.each do |key, value|
+          obj.key_name = key
+          value.each do |collection|
+            obj.items << Components::Item.create(collection)
           end
         end
         obj
+      end
+
+      # Hash override to generate the correct hash
+      def to_hash
+        {
+          key_name => items.collect(&:to_hash)
+        }
       end
     end
   end

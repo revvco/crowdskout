@@ -23,11 +23,20 @@ module Crowdskout
             else
               # key is the name of the field
               # value is the field's value
-              obj.fields << Components::Field.create(key, value)
+              obj.fields << Components::Field.create({key => value})
             end
           end
         end
         obj
+      end
+
+      # Hash override to generate the correct hash
+      def to_hash
+        ret_val = { id: id }
+        fields.each do |field|
+          ret_val.merge! field.to_hash
+        end
+        ret_val
       end
     end
   end

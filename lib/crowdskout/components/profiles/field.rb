@@ -14,15 +14,24 @@ module Crowdskout
       # @param [String] key_name - name of the Field
       # @param [Hash or String] value - properties to create object from
       # @return [Field]
-      def self.create(key_name, value)
+      def self.create(props)
         obj = Field.new
-        obj.key_name = key_name
-        if value.is_a?(Hash)
-          obj.value = Value.create(value)
-        else
-          obj.value = value.to_s
+        props.each do |key, value|
+          obj.key_name = key
+          if value.is_a?(Hash)
+            obj.value = Value.create(value)
+          else
+            obj.value = value.to_s
+          end
         end
         obj
+      end
+
+      # Hash override to generate the correct hash
+      def to_hash
+        {
+          key_name => (value.is_a?(String) ? value : value.to_hash)
+        }
       end
     end
   end
