@@ -37,7 +37,9 @@ module Crowdskout
           raise Exceptions::ServiceException, "Profile object must not be nil." if profile.nil?
           url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.profile')
           url = build_url(url)
-          payload = profile.to_json
+          payload = {
+            profile: profile.to_hash
+          }.to_json
           response = RestClient.post(url, payload, get_headers())
           Components::Profile.create(JSON.parse(response.body)["data"])
         end
@@ -51,7 +53,9 @@ module Crowdskout
           raise Exceptions::ServiceException, "Must be an array of profiles." if profiles.nil? || !profiles.is_a?(Array)
           url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.profile_bulk')
           url = build_url(url)
-          payload = profiles.to_json
+          payload = {
+            profiles: profiles.collect(&:to_hash)
+          }.to_json
           response = RestClient.post(url, payload, get_headers())
           body = JSON.parse(response.body)
 
@@ -71,7 +75,9 @@ module Crowdskout
           raise Exceptions::ServiceException, "Profile object must not be nil." if profile.nil?
           url = Util::Config.get('endpoints.base_url') + sprintf(Util::Config.get('endpoints.crud_profile'), profile.id)
           url = build_url(url)
-          payload = profile.to_json
+          payload = {
+            profile: profile.to_hash
+          }.to_json
           response = RestClient.put(url, payload, get_headers())
           Components::Profile.create(JSON.parse(response.body)["data"])
         end
@@ -84,7 +90,9 @@ module Crowdskout
           raise Exceptions::ServiceException, "Must be an array of profiles." if profiles.nil? || !profiles.is_a?(Array)
           url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.profile_bulk')
           url = build_url(url)
-          payload = profiles.to_json
+          payload = {
+            profiles: profiles.collect(&:to_hash)
+          }.to_json
           response = RestClient.put(url, payload, get_headers())
           body = JSON.parse(response.body)
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    crowdskout (0.0.6)
+    crowdskout (0.0.7)
       json (~> 1.8, >= 1.8.1)
       mime-types (~> 1.25, >= 1.25.1)
       rest-client (~> 1.6, >= 1.6.7)
