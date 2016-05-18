@@ -18,8 +18,12 @@ module Crowdskout
         obj.items = []
         props.each do |key, value|
           obj.key_name = key
-          value.each do |collection|
-            obj.items << Components::Item.create(collection)
+          if value.is_a?(Hash) || value.is_a?(Array)
+            value.each do |collection|
+              obj.items << Components::Item.create(collection)
+            end
+          else
+            obj.items << Components::Item.create({ key => value })
           end
         end
         obj
