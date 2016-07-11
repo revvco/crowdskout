@@ -59,5 +59,10 @@ module Crowdskout
     def delete_attribute(attribute_id)
       Services::AttributeService.delete_attribute(attribute_id)
     end
+
+    # Quartermaster Service Methods
+    def tracking_code
+      Services::QuartermasterService.tracking_code
+    end
   end
 end

@@ -23,7 +23,9 @@ module Crowdskout
 
           :attributes                     => 'attributes',
           :attribute                      => 'attribute',
-          :crud_attribute                 => 'attribute/%s'
+          :crud_attribute                 => 'attribute/%s',
+
+          :tracking                       => 'tracking'
         },
 
         # OAuth2 Authorization related configuration options

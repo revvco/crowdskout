@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    crowdskout (0.0.10)
+    crowdskout (0.0.11)
       json (~> 1.8, >= 1.8.1)
       mime-types (~> 1.25, >= 1.25.1)
       rest-client (~> 1.6, >= 1.6.7)
@@ -41,3 +41,6 @@ DEPENDENCIES
   crowdskout!
   rake
   rspec (~> 2.14)
+
+BUNDLED WITH
+   1.12.5

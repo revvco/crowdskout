@@ -40,6 +40,7 @@ module Crowdskout
     autoload :ProfileService, 'crowdskout/services/profile_service'
     autoload :FieldService, 'crowdskout/services/field_service'
     autoload :AttributeService, 'crowdskout/services/attribute_service'
+    autoload :QuartermasterService, 'crowdskout/services/quartermaster_service'
   end  
 
   module Components
@@ -53,6 +54,7 @@ module Crowdskout
     autoload :Field, 'crowdskout/components/profiles/field'
     autoload :Value, 'crowdskout/components/profiles/value'
     autoload :FieldOptions, 'crowdskout/components/fields/field_options'
+    autoload :TrackingCode, 'crowdskout/components/quartermaster/tracking_code'
   end
 
   module Exceptions

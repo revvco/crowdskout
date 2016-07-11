@@ -19,5 +19,5 @@
 # THE SOFTWARE.
 
 module Crowdskout
-  VERSION = '0.0.10'
+  VERSION = '0.0.11'
 end
