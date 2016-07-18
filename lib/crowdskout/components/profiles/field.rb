@@ -30,7 +30,7 @@ module Crowdskout
       # Hash override to generate the correct hash
       def to_hash
         {
-          key_name => (value.is_a?(Hash) ? value.to_hash : value)
+          key_name => (value.to_hash rescue value)
         }
       end
     end
