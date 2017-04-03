@@ -37,6 +37,9 @@ module Crowdskout
     def update_profiles_bulk(profiles)
       Services::ProfileService.update_profiles_bulk(profiles)
     end
+    def check_for_non_match(profile)
+      Services::ProfileService.check_for_non_match(profile)
+    end
 
     # Fields Service Methods
     def get_options_for_a_field(field_name, params = {})
