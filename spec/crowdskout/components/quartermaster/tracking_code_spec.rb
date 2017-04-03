@@ -22,29 +22,30 @@ describe Crowdskout::Components::TrackingCode do
     expect(component.organization).to eq 2
     expect(component.client).to eq 3
     
-    expect(component.tracking_code_source.gsub(/\s+/, " ")).to eq %{<!-- Crowdskout -->
+    expect(component.tracking_code_source.gsub(/\s+/, " ")).to eq           %{
+            <!-- Crowdskout -->
             <script>
-            (function(l,o,v,e,d) {
-              l.cs=l.cs || function() {cs.q.push(arguments);};
-              cs.q=cs.q||[];cs.apiUrl=d;cs('pageView');
-              l.sourceId = #{component.source};l.clientId = #{component.client};l.organizationId = #{component.organization};
-              var a=o.getElementsByTagName(v)[0];var b=o.createElement(v);b.src=e+'/analytics.js';
-              b.onreadystatechange = b.onload = function() {
-                if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
-                  l._csCalledBackup = l._csCalled;
-                  l._csCalled = function(type, body) {
-                    if (type === 'pageView') {
-                      l.cspageviewuuid = body.uuid;
-                    }
-                    if (l._csCalledBackup) {
-                      l._csCalledBackup(type, body);
-                    }
-                  };
-                }
-              };
-              a.parentNode.insertBefore(b,a);
-              })(window, document, 'script', '//s.crowdskout.com','https://a.crowdskout.com');
-              </script>}.gsub(/\s+/, " ")
+              (function(s,k,o,u,t){
+                s.cs=s.cs||function(){cs.q.push(arguments);};
+                cs.q=cs.q||[];cs.apiUrl=t;s.sourceId=6041;s.clientId=1637;s.organizationId=142092;
+                var a=k.getElementsByTagName(o)[0];var b=k.createElement(o);b.src=u+'/analytics.js';
+                b.onreadystatechange = b.onload = function() {
+                  if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
+                    l._csCalledBackup = l._csCalled;
+                    l._csCalled = function(type, body) {
+                      if (type === 'page-view') {
+                        l.cspageviewuuid = body.uuid;
+                      }
+                      if (l._csCalledBackup) {
+                        l._csCalledBackup(type, body);
+                      }
+                    };
+                  }
+                };
+                a.parentNode.insertBefore(b,a);
+              })(window,document,'script','//s.crowdskout.com','https://a.crowdskout.com');
+              </script>
+            }.gsub(/\s+/, " ")
   end
   it "generates the correct json object" do 
     component = Crowdskout::Components::TrackingCode.create(@hash)

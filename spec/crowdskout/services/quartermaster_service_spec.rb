@@ -26,29 +26,30 @@ describe Crowdskout::Services::QuartermasterService do
       expect(tracking_code.organization).to eq 2
       expect(tracking_code.client).to eq 3
       
-      expect(tracking_code.tracking_code_source.gsub(/\s+/, " ")).to eq %{<!-- Crowdskout -->
-        <script>
-        (function(l,o,v,e,d) {
-          l.cs=l.cs || function() {cs.q.push(arguments);};
-          cs.q=cs.q||[];cs.apiUrl=d;cs('pageView');
-          l.sourceId = #{tracking_code.source};l.clientId = #{tracking_code.client};l.organizationId = #{tracking_code.organization};
-          var a=o.getElementsByTagName(v)[0];var b=o.createElement(v);b.src=e+'/analytics.js';
-          b.onreadystatechange = b.onload = function() {
-            if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
-              l._csCalledBackup = l._csCalled;
-              l._csCalled = function(type, body) {
-                if (type === 'pageView') {
-                  l.cspageviewuuid = body.uuid;
-                }
-                if (l._csCalledBackup) {
-                  l._csCalledBackup(type, body);
-                }
-              };
-            }
-          };
-          a.parentNode.insertBefore(b,a);
-          })(window, document, 'script', '//s.crowdskout.com','https://a.crowdskout.com');
-          </script>}.gsub(/\s+/, " ")
+      expect(tracking_code.tracking_code_source.gsub(/\s+/, " ")).to eq           %{
+            <!-- Crowdskout -->
+            <script>
+              (function(s,k,o,u,t){
+                s.cs=s.cs||function(){cs.q.push(arguments);};
+                cs.q=cs.q||[];cs.apiUrl=t;s.sourceId=6041;s.clientId=1637;s.organizationId=142092;
+                var a=k.getElementsByTagName(o)[0];var b=k.createElement(o);b.src=u+'/analytics.js';
+                b.onreadystatechange = b.onload = function() {
+                  if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
+                    l._csCalledBackup = l._csCalled;
+                    l._csCalled = function(type, body) {
+                      if (type === 'page-view') {
+                        l.cspageviewuuid = body.uuid;
+                      }
+                      if (l._csCalledBackup) {
+                        l._csCalledBackup(type, body);
+                      }
+                    };
+                  }
+                };
+                a.parentNode.insertBefore(b,a);
+              })(window,document,'script','//s.crowdskout.com','https://a.crowdskout.com');
+              </script>
+            }.gsub(/\s+/, " ")
         end
       end
     end

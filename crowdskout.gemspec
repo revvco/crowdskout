@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "crowdskout"
-  s.version = '0.0.16'
+  s.version = '0.0.17'
   s.platform = Gem::Platform::RUBY
   s.authors = ["Crowdskout", "Revv","Kyle Schutt"]
   s.homepage = "https://github.com/revvco/crowdskout"
