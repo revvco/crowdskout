@@ -141,4 +141,30 @@ describe Crowdskout::Services::ProfileService do
       profile.collections[0].items[0].fields[0].value.value.should eq "Male"
     end
   end
+
+  describe "#check_for_non_match" do
+    it "is a non-match" do
+      json = load_file('check_for_non_match_true_response.json')
+      net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
+
+      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      RestClient.stub(:post).and_return(response)
+      profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
+      non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
+
+      non_match_response.should eq true
+    end
+
+    it "is a not non-match" do
+      json = load_file('check_for_non_match_false_response.json')
+      net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
+
+      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      RestClient.stub(:post).and_return(response)
+      profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
+      non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
+
+      non_match_response.should eq false
+    end
+  end
 end

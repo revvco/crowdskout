@@ -103,6 +103,24 @@ module Crowdskout
 
           Components::ResultSet.new(profiles, body['messages'])
         end
+
+        # more info - https://docs.crowdskout.com/api/#check-for-a-non-match
+        # 
+        # Check for a non-match. The endpoints returns true if the given Profile object is definitely NOT a match.
+        # That means that the ID given in the Profile object does not match the Profile data.
+        # 
+        # @param [Profile] profile - profile to check for non-match
+        # @return [boolean] - returns true if it is a non-match, false in all other scenarios
+        def check_for_non_match(profile)
+          raise Exceptions::ServiceException, "Profile object must not be nil." if profile.nil?
+          url = Util::Config.get('endpoints.base_url') + sprintf(Util::Config.get('endpoints.check_for_non_match'), profile.id)
+          url = build_url(url)
+          payload = {
+            profile: profile.to_hash
+          }.to_json
+          response = RestClient.post(url, payload, get_headers())
+          JSON.parse(response.body)["data"]
+        end
       end
     end
   end

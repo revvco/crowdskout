@@ -25,7 +25,9 @@ module Crowdskout
           :attribute                      => 'attribute',
           :crud_attribute                 => 'attribute/%s',
 
-          :tracking                       => 'tracking'
+          :tracking                       => 'tracking',
+
+          :check_for_non_match            => 'profile/%s/non-match-check'
         },
 
         # OAuth2 Authorization related configuration options
