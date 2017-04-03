@@ -27,7 +27,8 @@ describe Crowdskout::Components::TrackingCode do
             <script>
               (function(s,k,o,u,t){
                 s.cs=s.cs||function(){cs.q.push(arguments);};
-                cs.q=cs.q||[];cs.apiUrl=t;s.sourceId=6041;s.clientId=1637;s.organizationId=142092;
+                cs.q=cs.q||[];cs.apiUrl=t;
+                s.sourceId = #{component.source};s.clientId = #{component.client};s.organizationId = #{component.organization};
                 var a=k.getElementsByTagName(o)[0];var b=k.createElement(o);b.src=u+'/analytics.js';
                 b.onreadystatechange = b.onload = function() {
                   if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
