@@ -28,7 +28,21 @@ describe Crowdskout::Components::TrackingCode do
               l.cs=l.cs || function() {cs.q.push(arguments);};
               cs.q=cs.q||[];cs.apiUrl=d;cs('pageView');
               l.sourceId = #{component.source};l.clientId = #{component.client};l.organizationId = #{component.organization};
-              var a=o.getElementsByTagName(v)[0];var b=o.createElement(v);b.src=e+'/analytics.js';a.parentNode.insertBefore(b,a);
+              var a=o.getElementsByTagName(v)[0];var b=o.createElement(v);b.src=e+'/analytics.js';
+              b.onreadystatechange = b.onload = function() {
+                if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
+                  l._csCalledBackup = l._csCalled;
+                  l._csCalled = function(type, body) {
+                    if (type === 'pageView') {
+                      l.cspageviewuuid = body.uuid;
+                    }
+                    if (l._csCalledBackup) {
+                      l._csCalledBackup(type, body);
+                    }
+                  };
+                }
+              };
+              a.parentNode.insertBefore(b,a);
               })(window, document, 'script', '//s.crowdskout.com','https://a.crowdskout.com');
               </script>}.gsub(/\s+/, " ")
   end
