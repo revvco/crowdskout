@@ -31,13 +31,13 @@ describe Crowdskout::Components::TrackingCode do
                 var a=k.getElementsByTagName(o)[0];var b=k.createElement(o);b.src=u+'/analytics.js';
                 b.onreadystatechange = b.onload = function() {
                   if ((!b.readyState || /loaded|complete/.test(b.readyState))) {
-                    l._csCalledBackup = l._csCalled;
-                    l._csCalled = function(type, body) {
+                    s._csCalledBackup = s._csCalled;
+                    s._csCalled = function(type, body) {
                       if (type === 'page-view') {
-                        l.cspageviewuuid = body.uuid;
+                        s.cspageviewuuid = body.uuid;
                       }
-                      if (l._csCalledBackup) {
-                        l._csCalledBackup(type, body);
+                      if (s._csCalledBackup) {
+                        s._csCalledBackup(type, body);
                       }
                     };
                   }
