@@ -24,6 +24,42 @@
         "TestValue" : "value"
       }
     ],
+    "Donations" : [
+      {
+        "id" : "ebe43c2f-c0db-4820-a370-f1210c120aea",
+        "DonationOrganization" : {
+          "id" : 1,
+          "value" : "Crowdskout"
+        },
+        "DonationWhen" : "2014-01-01T12:00:00+00",
+        "DonationParent" : {
+          "id" : "abcd-abcd-abcd-abcd",
+          "collection" : "PageViews"
+        },
+        "DonationAmount" : 100.00,
+        "DonationExternalID" : "jwalkV-adwkj",
+        "DonationCampaign":  {
+          "id" : "donor-perfect1",
+          "externalId" : 1,
+          "service" : "donor-perfect",
+          "value" :  "High Value Donors 2016"
+        },
+        "DonationPaidWith" : {
+          "id" : "check",
+          "value" : "Check"
+        },
+        "DonationCollectionMethod" : {
+          "id" : "event",
+          "value" : "Event"
+        },
+        "DonationRecurring" : {
+          "id" : "no",
+          "value" : "No"
+        },
+        "DonationSourceCode" : "I-230",
+        "DonationSubscriptionID" : "abcd1234"
+      }
+    ],
     "Date" : "2016-05-18T15:50:59+00:00"
   }
 }

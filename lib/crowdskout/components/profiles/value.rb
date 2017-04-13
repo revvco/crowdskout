@@ -16,7 +16,13 @@ module Crowdskout
         obj = Value.new
         if props
           props.each do |key, value|
-            obj.send("#{key}=", value) if obj.respond_to? key
+            if obj.respond_to? key
+              obj.send("#{key}=", value) 
+            else
+              # this will create the attribute if it doesn't exist
+              obj.class.send(:attr_accessor, key)
+              obj.instance_variable_set("@#{key}", value)
+            end
           end
         end
         obj
