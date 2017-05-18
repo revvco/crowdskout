@@ -16,7 +16,7 @@ describe Crowdskout::Services::FieldService do
       json = load_file('field_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
       field = Crowdskout::Services::FieldService.get_options_for_a_field("AddressCity")
 

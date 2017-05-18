@@ -16,7 +16,7 @@ describe Crowdskout::Services::AttributeService do
       json = load_file('attributes_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
       attributes = Crowdskout::Services::AttributeService.get_attributes()
       attribute = attributes.results[0]
@@ -31,7 +31,7 @@ describe Crowdskout::Services::AttributeService do
       json = load_file('attribute_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
       attribute = Crowdskout::Services::AttributeService.get_attribute(1)
 
@@ -44,7 +44,7 @@ describe Crowdskout::Services::AttributeService do
       json = load_file('attribute_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       new_attribute = Crowdskout::Components::Attribute.create(JSON.parse(json))
       attribute = Crowdskout::Services::AttributeService.create_attribute(new_attribute)
@@ -59,7 +59,7 @@ describe Crowdskout::Services::AttributeService do
       attribute_id = 196
       net_http_resp = Net::HTTPResponse.new(1.0, 204, 'No Content')
 
-      response = RestClient::Response.create('', net_http_resp, {}, @request)
+      response = RestClient::Response.create('', net_http_resp, @request)
       RestClient.stub(:delete).and_return(response)
 
       result = Crowdskout::Services::AttributeService.delete_attribute(attribute_id)
@@ -72,7 +72,7 @@ describe Crowdskout::Services::AttributeService do
       json = load_file('attribute_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:put).and_return(response)
       attribute = Crowdskout::Components::Attribute.create(JSON.parse(json))
       result = Crowdskout::Services::AttributeService.update_attribute(attribute)

@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "crowdskout"
-  s.version = '0.0.20'
+  s.version = '0.1.0'
   s.platform = Gem::Platform::RUBY
   s.authors = ["Crowdskout", "Revv","Kyle Schutt"]
   s.homepage = "https://github.com/revvco/crowdskout"
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.require_paths = [ "lib" ]
   s.test_files = Dir['spec/**/*_spec.rb']
   
-  s.add_runtime_dependency("rest-client", '~> 1.6', '>= 1.6.7')
+  s.add_runtime_dependency("rest-client", '< 4.0', '>= 1.6.7')
   s.add_runtime_dependency("json", '~> 1.8', '>= 1.8.1')
   s.add_runtime_dependency('mime-types', '~> 1.25', '>= 1.25.1')
   s.add_development_dependency("rspec", '~> 2.14')

@@ -16,7 +16,7 @@ describe Crowdskout::Services::QuartermasterService do
       json = load_file('tracking_code_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
       tracking_code = Crowdskout::Services::QuartermasterService.tracking_code
 

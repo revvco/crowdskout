@@ -16,7 +16,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('profile_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
       profile = Crowdskout::Services::ProfileService.get_profile(1, "Names,Genders")
 
@@ -40,7 +40,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('profile_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       new_profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
       profile = Crowdskout::Services::ProfileService.create_profile(new_profile)
@@ -65,7 +65,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('profile_bulk_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       profiles = []
       body = JSON.parse(json)
@@ -94,7 +94,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('profile_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:put).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
       result = Crowdskout::Services::ProfileService.update_profile(profile)
@@ -119,7 +119,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('profile_bulk_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:put).and_return(response)
       profiles = []
       body = JSON.parse(json)
@@ -147,7 +147,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('check_for_non_match_true_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
       non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
@@ -159,7 +159,7 @@ describe Crowdskout::Services::ProfileService do
       json = load_file('check_for_non_match_false_response.json')
       net_http_resp = Net::HTTPResponse.new(1.0, 200, 'OK')
 
-      response = RestClient::Response.create(json, net_http_resp, {}, @request)
+      response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
       non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
