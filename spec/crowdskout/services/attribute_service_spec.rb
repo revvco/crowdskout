@@ -18,7 +18,7 @@ describe Crowdskout::Services::AttributeService do
 
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
-      attributes = Crowdskout::Services::AttributeService.get_attributes()
+      attributes = Crowdskout::Services::AttributeService.new('api_key', 'access_token').get_attributes()
       attribute = attributes.results[0]
 
       attributes.should be_kind_of(Crowdskout::Components::ResultSet)
@@ -33,7 +33,7 @@ describe Crowdskout::Services::AttributeService do
 
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
-      attribute = Crowdskout::Services::AttributeService.get_attribute(1)
+      attribute = Crowdskout::Services::AttributeService.new('api_key', 'access_token').get_attribute(1)
 
       attribute.should be_kind_of(Crowdskout::Components::Attribute)
     end
@@ -47,7 +47,7 @@ describe Crowdskout::Services::AttributeService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       new_attribute = Crowdskout::Components::Attribute.create(JSON.parse(json))
-      attribute = Crowdskout::Services::AttributeService.create_attribute(new_attribute)
+      attribute = Crowdskout::Services::AttributeService.new('api_key', 'access_token').create_attribute(new_attribute)
 
       attribute.should be_kind_of(Crowdskout::Components::Attribute)
       attribute.type.should eq('Radio')
@@ -62,7 +62,7 @@ describe Crowdskout::Services::AttributeService do
       response = RestClient::Response.create('', net_http_resp, @request)
       RestClient.stub(:delete).and_return(response)
 
-      result = Crowdskout::Services::AttributeService.delete_attribute(attribute_id)
+      result = Crowdskout::Services::AttributeService.new('api_key', 'access_token').delete_attribute(attribute_id)
       result.should be true
     end
   end
@@ -75,7 +75,7 @@ describe Crowdskout::Services::AttributeService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:put).and_return(response)
       attribute = Crowdskout::Components::Attribute.create(JSON.parse(json))
-      result = Crowdskout::Services::AttributeService.update_attribute(attribute)
+      result = Crowdskout::Services::AttributeService.new('api_key', 'access_token').update_attribute(attribute)
 
       result.should be_kind_of(Crowdskout::Components::Attribute)
       result.type.should eq('Radio')
