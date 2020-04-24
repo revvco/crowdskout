@@ -2,4 +2,4 @@ source 'https://rubygems.org'
 
 # Specify your gem's dependencies in crowdskout.gemspec
 gemspec
-gem 'rake', '< 11.0'
+gem 'rake', '< 13.0'
