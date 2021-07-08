@@ -18,7 +18,7 @@ describe Crowdskout::Services::ProfileService do
 
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
-      profile = Crowdskout::Services::ProfileService.get_profile(1, "Names,Genders")
+      profile = Crowdskout::Services::ProfileService.new('api_key', 'access_token').get_profile(1, "Names,Genders")
 
       profile.should be_kind_of(Crowdskout::Components::Profile)
       profile.collections[1].should be_kind_of(Crowdskout::Components::Collection)
@@ -43,7 +43,7 @@ describe Crowdskout::Services::ProfileService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       new_profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
-      profile = Crowdskout::Services::ProfileService.create_profile(new_profile)
+      profile = Crowdskout::Services::ProfileService.new('api_key', 'access_token').create_profile(new_profile)
 
       profile.should be_kind_of(Crowdskout::Components::Profile)
       profile.collections[1].should be_kind_of(Crowdskout::Components::Collection)
@@ -72,7 +72,7 @@ describe Crowdskout::Services::ProfileService do
       body['data'].each do |profile|
         profiles << Crowdskout::Components::Profile.create(profile)
       end if body['data'].count > 0
-      profiles = Crowdskout::Services::ProfileService.create_profiles_bulk(profiles)
+      profiles = Crowdskout::Services::ProfileService.new('api_key', 'access_token').create_profiles_bulk(profiles)
       profile = profiles.results[0]
 
       profiles.should be_kind_of(Crowdskout::Components::ResultSet)
@@ -97,7 +97,7 @@ describe Crowdskout::Services::ProfileService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:put).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(json)["data"])
-      result = Crowdskout::Services::ProfileService.update_profile(profile)
+      result = Crowdskout::Services::ProfileService.new('api_key', 'access_token').update_profile(profile)
 
       result.should be_kind_of(Crowdskout::Components::Profile)
       result.collections[1].should be_kind_of(Crowdskout::Components::Collection)
@@ -126,7 +126,7 @@ describe Crowdskout::Services::ProfileService do
       body['data'].each do |profile|
         profiles << Crowdskout::Components::Profile.create(profile)
       end if body['data'].count > 0
-      profiles = Crowdskout::Services::ProfileService.update_profiles_bulk(profiles)
+      profiles = Crowdskout::Services::ProfileService.new('api_key', 'access_token').update_profiles_bulk(profiles)
       profile = profiles.results[0]
 
       profiles.should be_kind_of(Crowdskout::Components::ResultSet)
@@ -150,7 +150,7 @@ describe Crowdskout::Services::ProfileService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
-      non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
+      non_match_response = Crowdskout::Services::ProfileService.new('api_key', 'access_token').check_for_non_match(profile)
 
       non_match_response.should eq true
     end
@@ -162,7 +162,7 @@ describe Crowdskout::Services::ProfileService do
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:post).and_return(response)
       profile = Crowdskout::Components::Profile.create(JSON.parse(load_file('profile_response.json'))["data"])
-      non_match_response = Crowdskout::Services::ProfileService.check_for_non_match(profile)
+      non_match_response = Crowdskout::Services::ProfileService.new('api_key', 'access_token').check_for_non_match(profile)
 
       non_match_response.should eq false
     end

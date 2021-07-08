@@ -7,16 +7,13 @@
 module Crowdskout
   module Services
     class QuartermasterService < BaseService
-      class << self
+      # More info - to get the tracking codes for CrowdSkout
+      # @return [Components::TrackingCode] Components::TrackingCode
+      def tracking_code
+        url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.tracking')
 
-        # More info - to get the tracking codes for CrowdSkout
-        # @return [Components::TrackingCode] Components::TrackingCode
-        def tracking_code
-          url = Util::Config.get('endpoints.base_url') + Util::Config.get('endpoints.tracking')
-
-          response = RestClient.get(url, get_headers())
-          Components::TrackingCode.create(JSON.parse(response.body)["data"])
-        end
+        response = RestClient.get(url, get_headers())
+        Components::TrackingCode.create(JSON.parse(response.body)["data"])
       end
     end
   end

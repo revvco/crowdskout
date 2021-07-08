@@ -18,14 +18,14 @@ describe Crowdskout::Services::QuartermasterService do
 
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
-      tracking_code = Crowdskout::Services::QuartermasterService.tracking_code
+      tracking_code = Crowdskout::Services::QuartermasterService.new('api_key', 'access_token').tracking_code
 
       tracking_code.should be_kind_of(Crowdskout::Components::TrackingCode)
 
       expect(tracking_code.source).to eq 1
       expect(tracking_code.organization).to eq 2
       expect(tracking_code.client).to eq 3
-      
+
       expect(tracking_code.tracking_code_source.gsub(/\s+/, " ")).to eq           %{
             <!-- Crowdskout -->
             <script>

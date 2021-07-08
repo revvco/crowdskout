@@ -18,7 +18,7 @@ describe Crowdskout::Services::FieldService do
 
       response = RestClient::Response.create(json, net_http_resp, @request)
       RestClient.stub(:get).and_return(response)
-      field = Crowdskout::Services::FieldService.get_options_for_a_field("AddressCity")
+      field = Crowdskout::Services::FieldService.new('api_key', 'access_token').get_options_for_a_field("AddressCity")
 
       field.should be_kind_of(Crowdskout::Components::FieldOptions)
       field.collection.should eq "PhysicalAddresses"
